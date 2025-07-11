@@ -1,16 +1,16 @@
 # Proyecto: Tablero Lideres 0810.
-# Data
+## Data
 Se usan 6 archivos 3 generados en CISCO, los dos de pausas salen de qlikview y 1 de casos de salesforce
-# CISCO
+## CISCO
 1.  `informe_entrantes` : -Contact Service Queue Activity Report by Interval
 2.  `informe_detalle_agentes` : -Agent Detail Report
 3.  `detalle_sistema` : -Detailed Call CSQ Agent Report
-# QlikView
+## QlikView
  Salen del tablero: estados en construccion - estados agente.
  **IMPORTANTE** Sale de una tabla de cisco el reporte que lo trae es : -Agent State Detail Report
  - `informe_pausas` 
  - `informe_estados`
-# Salesforce
+## Salesforce
  Informe: Casos Reporte Customizado . Objeto de SF : Caso
  - `informe_casos`
 
@@ -25,7 +25,7 @@ python3 script.py "archivo1" "archivo2" "archivo3"
 4. estados.py
 5. cases.py
 
-# llamadas.py 
+## llamadas.py 
 - archivos que usa:
 1.  `informe_entrantes`
 2.  `informe_detalle_agentes`
@@ -46,7 +46,7 @@ El script ejecuta dos funciones principales en secuencia:
 ![alt text](image.png)
 
 
-# tiempos.py
+## tiempos.py
 - archivos que usa:
 1.  `informe_detalle_agentes`
 2.  `informe_pausas`
@@ -64,3 +64,50 @@ El script ejecuta dos funciones principales en secuencia:
 - Los datos se usan para generar estos dos gráficos.
 ![alt text](image-1.png)
 
+## llamadas_agente.py
+- archivos que usa:
+    1. `informe_detalle_agentes`
+    2. `detalle_sistema`
+
+ - El script ejecuta una única función principal:
+
+### llamadas_por_agente()
+**Propósito**: Generar una tabla detallada que desglosa, por cada agente del equipo, la cantidad total de llamadas Entrantes, Salientes y Abandonadas que manejó.
+**IMPORTANTE** 
+Identifica las llamadas abandonadas en el detalle_sistema basándose en *una regla específica del negocio (tiempo de conversación nulo y tiempo de timbre de 12 segundos).*
+
+**Importante**: Los datos de esta función van en la hoja ENTRANTES_SALIENTES_AGENTES, de la hoja de cálculo usada como bdd.
+
+- Los datos se usan para el gráfico *Llamadas por agente* y *Objetivo de llamadas*
+    -objetivo de +45 llamadas atendidas
+![alt text](image-2.png)
+
+##  estados.py
+- archivos que usa:
+    1. `informe_pausas`
+    2. `informe_estados`
+
+### take_time()
+**Propósito**: Procesar los reportes de estados y pausas de los agentes para generar una tabla de productividad y ocupación para cada agente.
+
+El script identifica automáticamente cuál de los dos archivos de entrada es el de 'pausas' y cuál el de 'estados'
+
+Calcula un conjunto de métricas de productividad clave, como: Tiempo Productivo, Tiempo de Conexión, Tiempo Operativo, Tiempos Improductivos y el Porcentaje de Ocupación.
+
+Importante: Los datos de esta función van en la hoja *ESTADOS*, de la hoja de cálculo usada como bdd.
+
+- Los datos se usan para el cuadro:
+![alt text](image-3.png)
+
+
+## Cases.py
+- archivo que usa
+  1. `informe_casos`
+
+### cases()
+Propósito: Calcular la cantidad de casos creados y cerrados por cada agente a partir del reporte de Salesforce, y determinar su tasa de Resolución en el Primer Contacto (FCR - First Call Resolution).
+
+Importante: Los datos de esta función van en la hoja *CASOS_USUARIO*, de la hoja de cálculo usada como bdd.
+
+- Los datos se usan para el resumen de **casos creados** y la tabla *casos por agente*
+![alt text](image-4.png)
