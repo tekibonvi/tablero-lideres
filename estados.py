@@ -24,9 +24,9 @@ def take_time(excel_1,excel_2):
     estados_pausas = pd.merge(estados,pausas,on="Agente" ,how="left")
 
     #estados_pausas['Tiempo productivo'] = (estados_pausas['Llamada']+ estados_pausas['Preparado']+ estados_pausas['Reservado']+ estados_pausas['Trabajo']+estados_pausas['Work'] + estados_pausas['Offhook']+  estados_pausas['Coaching'])
-    estados_pausas['Tiempo productivo'] = (estados_pausas['Llamada']+ estados_pausas['Preparado']+ estados_pausas['Reservado']+ estados_pausas['Trabajo']+estados_pausas['Work']+ estados_pausas['Campañas'] + estados_pausas['Offhook'])#+estados_pausas['Coaching'])
+    estados_pausas['Tiempo productivo'] = (estados_pausas['Llamada']+ estados_pausas['Preparado']+ estados_pausas['Reservado']+ estados_pausas['Trabajo']+estados_pausas['Work']+ estados_pausas['Campañas'] + estados_pausas['Offhook']+estados_pausas['Coaching'])
     estados_pausas['Tiempo de Conexión'] = (estados_pausas['Llamada']+ estados_pausas['Preparado']+ estados_pausas['Reservado']+ estados_pausas['Trabajo']+estados_pausas['No Preparado'])
-    estados_pausas['Tiempo Operativo'] =(estados_pausas['Llamada']+ estados_pausas['Reservado']+ estados_pausas['Trabajo']+estados_pausas['Work'])# + estados_pausas['Coaching'])
+    estados_pausas['Tiempo Operativo'] =(estados_pausas['Llamada']+ estados_pausas['Reservado']+ estados_pausas['Trabajo']+estados_pausas['Work'] + estados_pausas['Coaching'])
     estados_pausas['Tiempos Improductivos'] = (estados_pausas['Tiempo de Conexión'] - estados_pausas['Descanso'] - estados_pausas['Baño']- estados_pausas['Tiempo productivo'])
 
 

@@ -1,8 +1,9 @@
 import sys
 import pandas as pd
 from modules.data.data import id_0810
-from modules.Funciones.data_functions import limpiar_excel
-from modules.Funciones.call_functions import tiempo_med_espera, tasa_rellamado
+from modules.functions.data_functions import limpiar_excel
+from modules.functions.call_functions import tiempo_med_espera, tasa_rellamado
+
 
 
 def llamadas_total(informe_entrantes, informe_detalle_agentes, detalle_sistema):

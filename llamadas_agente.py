@@ -1,6 +1,6 @@
 import sys
 import pandas as pd
-from modules.funciones import limpiar_excel
+from modules.functions.data_functions import limpiar_excel
 from modules.data.data import id_0810
 
 

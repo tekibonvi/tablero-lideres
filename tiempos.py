@@ -1,8 +1,7 @@
 import sys
 import pandas as pd
 from modules.data.data import id_0810
-from modules.funciones import limpiar_excel
-from modules.Funciones.data_functions import formatear_decimales
+from modules.functions.data_functions import formatear_decimales, limpiar_excel
 
 def tiempos(informe_detalle_agentes, informe_pausas):
     agentes =limpiar_excel(informe_detalle_agentes)
